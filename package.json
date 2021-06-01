@@ -1,0 +1,19 @@
+{
+  "name": "api-compras",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RGAC98/api-compras.git"
+  },
+  "author": "Fernando Chulde, Dennis Chicaiza, Daniel Guerra, Ricardo Avila",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RGAC98/api-compras/issues"
+  },
+  "homepage": "https://github.com/RGAC98/api-compras#readme"
+}
