@@ -6,6 +6,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 //rutas
+app.use(require('./routes/cabecera.routes'))
 
 
 app.listen(3000)
