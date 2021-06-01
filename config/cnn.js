@@ -1,6 +1,6 @@
 const {Pool} = require('pg')
 
-const copras_bdd = new Pool({
+const compras_bdd = new Pool({
     host: 'localhost',
     port: '5432',
     database: 'compras_bdd',
@@ -9,5 +9,5 @@ const copras_bdd = new Pool({
 })
 
 module.exports = {
-    copras_bdd
+    compras_bdd
 }
