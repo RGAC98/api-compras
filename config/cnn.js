@@ -5,7 +5,7 @@ const compras_bdd = new Pool({
     port: '5432',
     database: 'compras_bdd',
     user: 'postgres',
-    password: '1459'
+    password: 'qwerty123'
 })
 
 module.exports = {
