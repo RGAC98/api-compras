@@ -14,5 +14,6 @@ route.get(
   factura_detalle_controller.GETfactura_detalleProducto
 )
 route.delete('/factura_detalle/:fdet_id', factura_detalle_controller.DELETEfactura_detalle)
+route.get('/factura_detalle', factura_detalle_controller.GET_All_factura_detalles)
 
 module.exports = route

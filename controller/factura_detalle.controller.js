@@ -55,10 +55,20 @@ async function DELETEfactura_detalle(req, res) {
   }
 }
 
+async function GET_All_factura_detalles(req, res){
+  try {
+    const respuesta = await factura_detalle_modelo.Select_ALL_Factura_Detalle()
+    res.status(200).send({facturas: respuesta})
+  } catch (error) {
+    res.status(500).send({mensaje_error: error.message})
+  }
+}
+
 module.exports = {
   POSTfactura_detalle,
   GETfactura_detalleProveedor,
   GETfactura_detalleIdFctura,
   GETfactura_detalleProducto,
-  DELETEfactura_detalle
+  DELETEfactura_detalle,
+  GET_All_factura_detalles
 }

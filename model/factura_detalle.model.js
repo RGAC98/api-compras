@@ -45,10 +45,17 @@ async function DeleteFactura_Detalle(fdet_id) {
   return 'Detalle de la Factura eliminada correctamente'
 }
 
+async function Select_ALL_Factura_Detalle(){
+  const query = `SELECT * FROM factura_detalle`
+  const detalles = await compras_bdd.query(query)
+  return detalles.rows
+}
+
 module.exports = {
   InsertFactura_Detalle,
   SelectFatura_DetalleByProveedor,
   SelectFatura_DetalleByIdFactura,
   SelectFatura_DetalleByProducto,
-  DeleteFactura_Detalle
+  DeleteFactura_Detalle,
+  Select_ALL_Factura_Detalle
 }
