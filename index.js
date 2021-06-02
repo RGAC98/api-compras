@@ -17,5 +17,7 @@ app.use(require('./routes/cabecera.routes'))
 //rutas de factura_detalle
 app.use(require('./routes/factura_detalle.routes'))
 
-app.listen(3000)
-console.log('El sapo esta escuchando en http://localhost:3000')
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {console.log(`El sapo esta escuchando en http://localhost:${port}`)})
+
