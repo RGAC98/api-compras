@@ -7,11 +7,11 @@ async function GetProveedor(req, res)
     res.status(200).send({proveedores: proveedor})
 }
 
-async function GetProveedorByName(req, res)
-{
-    const prv_nombre = req.params.prv_nombre
+async function GetProveedorByDni(req, res)
+{   
 
-    const proveedor = await proveedor_model.ProveedorByName(prv_nombre)
+    const prv_dni = req.params.prv_dni
+    const proveedor = await proveedor_model.ProveedorByDni(prv_dni)
     res.status(200).send({proveedores: proveedor})
 }
 
@@ -61,7 +61,7 @@ async function UPDATEProveedor(req, res)
 
 module.exports = {
     GetProveedor,
-    GetProveedorByName,
+    GetProveedorByDni,
     PostCreateProveedor,
     DELETEProveedor,
     UPDATEProveedor

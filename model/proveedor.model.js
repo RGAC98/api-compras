@@ -7,10 +7,12 @@ async function AllProveedor()
     return proveedor.rows
 }
 
-async function ProveedorByName(prv_nombre)
+async function ProveedorByDni(prv_dni)
 {
-    const query = `SELECT * FROM proveedores WHERE prv_nombre = $1`
-    const proveedor = await compras_bdd.query(query, [prv_nombre])
+    const query = `SELECT  p.prv_dni, p.prv_nombre 
+        FROM public.proveedores p 
+        WHERE p.prv_dni = $1;`
+    const proveedor = await compras_bdd.query(query, [prv_dni])
     return proveedor.rows
 }
 
@@ -37,7 +39,7 @@ async function UpdateProveedor( prv_id, prv_dni, prv_nombre, prv_ciudad, prv_tip
 
 module.exports = {
     AllProveedor,
-    ProveedorByName,
+    ProveedorByDni,
     CreateProveedor,
     DeleteProveedor,
     UpdateProveedor
