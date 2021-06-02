@@ -1,4 +1,4 @@
-const {Pool} = require('pg')
+const { Pool } = require('pg')
 
 const compras_bdd = new Pool({
     host: 'localhost',
@@ -9,5 +9,5 @@ const compras_bdd = new Pool({
 })
 
 module.exports = {
-    compras_bdd
+  compras_bdd
 }
