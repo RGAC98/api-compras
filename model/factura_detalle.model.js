@@ -1,4 +1,4 @@
-const { compras_bdd } = require('../config/cnn')
+const {compras_bdd} = require('../config/cnn')
 
 async function InsertFactura_Detalle(fdet_fcab_id) {
   const query = `INSERT INTO factura_detalle(fdet_fcab_id) VALUES ($1);`

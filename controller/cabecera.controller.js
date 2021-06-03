@@ -3,8 +3,14 @@ const cabecera_model = require('../model/factura_cabecera.model')
 
 async function GetCabeceras(req, res)
 {
-    const cabeceras = await cabecera_model.AllCabeceras()
-    res.status(200).send({cabeceras: cabeceras})
+    try 
+    {
+        const cabeceras = await cabecera_model.AllCabeceras()
+        res.status(200).send({cabeceras: cabeceras})
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})
+    }
 }
 
 async function PostCreateCabecera(req, res)
@@ -14,8 +20,14 @@ async function PostCreateCabecera(req, res)
     const fcab_fecha_fin = req.body.fcab_fecha_fin
     const fcab_tipo_pago = req.body.fcab_tipo_pago
 
-    const cabecera = await cabecera_model.CreateCabecera(fcab_prv_id, fcab_fecha_init, fcab_fecha_fin, fcab_tipo_pago)
-    res.status(200).send({mensaje: cabecera})
+    try 
+    {
+        const cabecera = await cabecera_model.CreateCabecera(fcab_prv_id, fcab_fecha_init, fcab_fecha_fin, fcab_tipo_pago)
+        res.status(200).send({mensaje: cabecera})
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})   
+    }
 }
 
 async function UpdateCabecera(req, res)
@@ -41,17 +53,21 @@ async function UpdateCabecera(req, res)
     } catch (error) 
     {
         res.status(500).json({error})    
-    }
-
-    
+    } 
 }
 
 async function DeleteCabecera(req, res)
 {
     const fcab_id = req.params.fcab_id
 
-    const cabecera = await cabecera_model.DeleteCabecera(fcab_id)
-    res.status(200).send({mensaje: cabecera})
+    try 
+    {
+        const cabecera = await cabecera_model.DeleteCabecera(fcab_id)
+        res.status(200).send({mensaje: cabecera})
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})
+    }
 }
 
 module.exports = {
