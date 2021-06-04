@@ -23,8 +23,16 @@ async function DELETE_factura_productos(fpro_fcab_id, fpro_fdet_id, fpro_product
     return 'Producto eliminado de la factura'
 }
 
+async function SELECT_ALL_factura_productos()
+{
+    const query = `SELECT * FROM factura_productos`
+    const facturas = await compras_bdd.query(query)
+    return facturas.rows
+}
+
 module.exports = {
     InsertFactura_Producto,
     UPDATE_factura_productos,
-    DELETE_factura_productos
+    DELETE_factura_productos,
+    SELECT_ALL_factura_productos
 }

@@ -51,11 +51,28 @@ async function Select_ALL_Factura_Detalle(){
   return detalles.rows
 }
 
+async function SELECT_facturas_BY_DNI_PRV_TOTAL_PAGO(dni_proveedor)
+{
+  const query = `SELECT prv.prv_dni, prv.prv_nombre, cab.fcab_id, cab.fcab_fecha_fin, 
+  sum((pro.fpro_cantidad*pro.fpro_pvp)+((pro.fpro_cantidad*pro.fpro_pvp)*pro.fpro_iva)) total_factura
+  FROM proveedores prv, factura_cabecera cab, factura_detalle det, factura_productos pro
+  WHERE prv.prv_id = cab.fcab_prv_id 
+  AND det.fdet_fcab_id = cab.fcab_id 
+  AND pro.fpro_fcab_id = cab.fcab_id 
+  AND pro.fpro_fdet_id = det.fdet_id
+  AND prv.prv_dni = $1
+  AND cab.fcab_tipo_pago = true
+  GROUP BY prv.prv_dni, prv.prv_nombre, cab.fcab_id`
+  const facturas = await compras_bdd.query(query, [dni_proveedor])
+  return facturas.rows
+}
+
 module.exports = {
   InsertFactura_Detalle,
   SelectFatura_DetalleByProveedor,
   SelectFatura_DetalleByIdFactura,
   SelectFatura_DetalleByProducto,
   DeleteFactura_Detalle,
-  Select_ALL_Factura_Detalle
+  Select_ALL_Factura_Detalle,
+  SELECT_facturas_BY_DNI_PRV_TOTAL_PAGO
 }

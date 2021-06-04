@@ -53,8 +53,21 @@ async function DELETE_fac_productos(req, res)
     }
 }
 
+async function GET_ALL_fac_productos(req, res)
+{
+    try 
+    {
+        const fac_productos = await factura_producto_modelo.SELECT_ALL_factura_productos()
+        res.status(200).send({factura_productos: fac_productos})    
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})    
+    }
+}
+
 module.exports = {
     POSTfactura_producto,
     PUT_Factura_Productos,
-    DELETE_fac_productos
+    DELETE_fac_productos,
+    GET_ALL_fac_productos
 }

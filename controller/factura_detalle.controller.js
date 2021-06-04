@@ -64,11 +64,25 @@ async function GET_All_factura_detalles(req, res){
   }
 }
 
+async function GET_facturas_total_pagar_by_dni_prv(req, res)
+{
+  const dni_proveedor = req.params.dni_proveedor
+  try 
+  {
+    const facturas_total = await factura_detalle_modelo.SELECT_facturas_BY_DNI_PRV_TOTAL_PAGO(dni_proveedor)
+    res.status(200).send({facturas: facturas_total})
+  } catch (error) 
+  {
+    res.status(500).send({mensaje_error: error.message})  
+  }
+}
+
 module.exports = {
   POSTfactura_detalle,
   GETfactura_detalleProveedor,
   GETfactura_detalleIdFctura,
   GETfactura_detalleProducto,
   DELETEfactura_detalle,
-  GET_All_factura_detalles
+  GET_All_factura_detalles,
+  GET_facturas_total_pagar_by_dni_prv
 }
