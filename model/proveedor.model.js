@@ -13,7 +13,7 @@ async function ProveedorByDni(prv_dni)
         FROM public.proveedores p 
         WHERE p.prv_dni = $1;`
     const proveedor = await compras_bdd.query(query, [prv_dni])
-    return proveedor.rows
+    return proveedor.rows[0]
 }
 
 async function CreateProveedor(prv_dni, prv_nombre, prv_ciudad, prv_tipo, prv_direccion, prv_telefono, prv_email, prv_estado)
@@ -37,10 +37,18 @@ async function UpdateProveedor( prv_id, prv_dni, prv_nombre, prv_ciudad, prv_tip
     return 'Proveedor actualizado'
 }
 
+async function DeleteProveedorByDNI(prv_dni)
+{
+    const query = `DELETE FROM proveedores WHERE prv_dni = $1`
+    const proveedor = await compras_bdd.query(query, [prv_dni])
+    return 'Proveedor eliminado por DNI correctamente'
+}
+
 module.exports = {
     AllProveedor,
     ProveedorByDni,
     CreateProveedor,
     DeleteProveedor,
-    UpdateProveedor
+    UpdateProveedor,
+    DeleteProveedorByDNI
 }

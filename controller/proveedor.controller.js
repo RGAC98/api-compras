@@ -20,7 +20,14 @@ async function GetProveedorByDni(req, res)
     try 
     {
         const proveedor = await proveedor_model.ProveedorByDni(prv_dni)
-        res.status(200).send({proveedores: proveedor})
+        if(proveedor === '')
+        {
+            res.status(200).send({proveedores: "No se encontro proveedor"})
+        }else
+        {
+            res.status(200).send({proveedores: proveedor})
+        }
+        
     } catch (error) 
     {
         res.status(500).send({mensaje_error: error.message})    
@@ -33,8 +40,35 @@ async function PostCreateProveedor(req, res)
 
     try 
     {
-        const proveedor = await proveedor_model.CreateProveedor(prv_dni, prv_nombre, prv_ciudad, prv_tipo, prv_direccion, prv_telefono, prv_email, prv_estado)
-        res.status(200).send({mensaje: proveedor})
+        var suma = 0
+        var numero
+        var x
+
+        for (let i = 0; i < prv_dni.length; i++) 
+        {
+            numero = parseInt(prv_dni.charAt(i))
+            if((i+1)%2 != 0)
+            {
+                x = numero * 2
+                if(x>9)
+                {
+                    x = x - 9
+                }
+                suma = suma + x
+            }else
+            {
+                suma = suma + numero
+            }
+        }
+
+        if(suma % 10 != 0)
+        {
+            res.status(200).send({mensaje_error: "Cedula ingresada incorrecta"})
+        }else
+        {
+            const proveedor = await proveedor_model.CreateProveedor(prv_dni, prv_nombre, prv_ciudad, prv_tipo, prv_direccion, prv_telefono, prv_email, prv_estado)
+            res.status(200).send({mensaje: proveedor})
+        }   
     } catch (error) 
     {
         res.status(500).send({mensaje_error: error.message})    
@@ -81,10 +115,24 @@ async function UPDATEProveedor(req, res)
     }
 }
 
+async function DELETEProveedor_BY_DNI(req, res)
+{
+    const dni = req.params.dni
+    try 
+    {
+        const proveedor = await proveedor_model.DeleteProveedorByDNI(dni)
+        res.status(200).send({mensaje: proveedor})    
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})    
+    }
+}
+
 module.exports = {
     GetProveedor,
     GetProveedorByDni,
     PostCreateProveedor,
     DELETEProveedor,
-    UPDATEProveedor
+    UPDATEProveedor,
+    DELETEProveedor_BY_DNI
 }
