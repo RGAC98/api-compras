@@ -6,7 +6,7 @@ async function GetProveedor(req, res)
     try 
     {
         const proveedor = await proveedor_model.AllProveedor()
-        res.status(200).send({proveedores: proveedor})
+        res.status(200).json(proveedor)
     } catch (error) 
     {
         res.status(500).send({mensaje_error: error.message})    
