@@ -20,7 +20,7 @@ async function GetProveedorByDni(req, res)
     try 
     {
         const proveedor = await proveedor_model.ProveedorByDni(prv_dni)
-        if(proveedor === '')
+        if(proveedor === undefined)
         {
             res.status(200).send({proveedores: "No se encontro proveedor"})
         }else

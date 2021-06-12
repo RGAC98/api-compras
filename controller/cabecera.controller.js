@@ -76,7 +76,7 @@ async function GetCabeceraBy_ID(req, res)
     try 
     {
         const cabecera = await cabecera_model.GetCabeceraByID(fcab_id)
-        if(cabecera !== '')
+        if(cabecera !== undefined)
         {
             res.status(200).send({fac_cabecera: cabecera})
         }else
