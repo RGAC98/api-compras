@@ -27,9 +27,17 @@ async function DeleteCabecera(fcab_id) {
   return "Cabecera eliminada";
 }
 
+async function GetCabeceraByID(fcac_id)
+{
+  const query = `SELECT * FROM factura_cabecera WHERE fcab_id = $1`
+  const cabecera = await compras_bdd.query(query, [fcac_id])
+  return cabecera.rows[0]
+}
+
 module.exports = {
   AllCabeceras,
   CreateCabecera,
   UpdateCabecera,
   DeleteCabecera,
+  GetCabeceraByID
 };

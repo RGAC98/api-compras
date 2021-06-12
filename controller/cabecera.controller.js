@@ -70,9 +70,29 @@ async function DeleteCabecera(req, res)
     }
 }
 
+async function GetCabeceraBy_ID(req, res)
+{
+    const fcab_id = req.params.fcab_id
+    try 
+    {
+        const cabecera = await cabecera_model.GetCabeceraByID(fcab_id)
+        if(cabecera !== '')
+        {
+            res.status(200).send({fac_cabecera: cabecera})
+        }else
+        {
+            res.status(200).send({mensaje_error: "Factura cabecera no encontrada"})
+        }    
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})   
+    }
+}
+
 module.exports = {
     GetCabeceras,
     PostCreateCabecera,
     UpdateCabecera,
-    DeleteCabecera
+    DeleteCabecera,
+    GetCabeceraBy_ID
 }

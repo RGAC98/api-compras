@@ -8,5 +8,6 @@ route.get('/cabeceras', cabecera_controller.GetCabeceras);
 route.post('/cabeceras', cabecera_controller.PostCreateCabecera);
 route.put('/cabeceras/:fcab_id', cabecera_controller.UpdateCabecera);
 route.delete('/cabeceras/:fcab_id', cabecera_controller.DeleteCabecera);
+route.get('/cabeceras/:fcab_id', cabecera_controller.GetCabeceraBy_ID)
 
 module.exports = route
