@@ -30,9 +30,19 @@ async function SELECT_ALL_factura_productos()
     return facturas.rows
 }
 
+async function SELECT_factura_producto_By_fcab_id(fcab_id)
+{
+    const query = `SELECT fpro_producto, fpro_cantidad, fpro_pvp, fpro_iva 
+    FROM factura_productos
+    WHERE fpro_fcab_id = $1`
+    const factura = await compras_bdd.query(query, [fcab_id])
+    return factura.rows
+}
+
 module.exports = {
     InsertFactura_Producto,
     UPDATE_factura_productos,
     DELETE_factura_productos,
-    SELECT_ALL_factura_productos
+    SELECT_ALL_factura_productos,
+    SELECT_factura_producto_By_fcab_id
 }

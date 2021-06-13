@@ -65,9 +65,29 @@ async function GET_ALL_fac_productos(req, res)
     }
 }
 
+async function Get_factura_producto_fcab_id(req, res)
+{
+    const fcab_id = req.params.fcab_id
+    try 
+    {
+        const producto = await factura_producto_modelo.SELECT_factura_producto_By_fcab_id(fcab_id)
+        if(producto !== undefined)
+        {
+            res.status(200).send({productos: producto})
+        }else
+        {
+            res.status(200).send({mensaje_error: "No se han ingresado productos a esta factura aun"})
+        }    
+    } catch (error) 
+    {
+        res.status(500).send({mensaje_error: error.message})   
+    }
+}
+
 module.exports = {
     POSTfactura_producto,
     PUT_Factura_Productos,
     DELETE_fac_productos,
-    GET_ALL_fac_productos
+    GET_ALL_fac_productos,
+    Get_factura_producto_fcab_id
 }
