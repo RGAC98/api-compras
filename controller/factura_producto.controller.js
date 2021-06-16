@@ -39,9 +39,9 @@ async function PUT_Factura_Productos(req, res)
 
 async function DELETE_fac_productos(req, res)
 {
-    const id_cabecera = req.body.id_cabecera
-    const id_detalle = req.body.id_detalle
-    const producto = req.body.producto
+    const id_cabecera = req.params.id_cabecera
+    const id_detalle = req.params.id_detalle
+    const producto = req.params.producto
 
     try 
     {
