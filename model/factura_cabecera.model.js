@@ -30,8 +30,9 @@ async function DeleteCabecera(fcab_id) {
 async function GetCabeceraByID(fcac_id)
 {
   const query = `SELECT prv.prv_dni, prv.prv_nombre, prv.prv_ciudad, prv.prv_direccion, prv.prv_telefono, prv.prv_email,
-  fcab.fcab_id, fcab.fcab_fecha_init, fcab.fcab_fecha_fin, fcab.fcab_tipo_pago FROM 
+  fcab.fcab_id, fdet.fdet_id, fcab.fcab_fecha_init, fcab.fcab_fecha_fin, fcab.fcab_tipo_pago FROM 
   proveedores prv INNER JOIN factura_cabecera fcab ON fcab.fcab_prv_id = prv.prv_id
+  INNER JOIN factura_detalle fdet ON fdet.fdet_fcab_id = fcab.fcab_id
   WHERE fcab.fcab_id = $1`
   const cabecera = await compras_bdd.query(query, [fcac_id])
   return cabecera.rows[0]
